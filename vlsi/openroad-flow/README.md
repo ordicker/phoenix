@@ -11,3 +11,6 @@
 ```
 export PATH="<extracted_location>/oss-cad-suite/bin:$PATH"
 ```
+
+# Adi Teman lectures 
+[youtube](https://www.youtube.com/watch?v=tywTQA_ko64&list=PLZU5hLL_713wQgIjRekOueTMJAyaoze3F&index=2)
