@@ -20,6 +20,12 @@ source env.sh
 export OPENROAD_EXE=$(command -v openroad)
 export YOSYS_CMD=$(command -v yosys)
 ```
+working example \w intro_to_vlsi/opendroad
+```
+cd OpenROAD-flow-scripts/flow
+ESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make
+ESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make gui_final
+```
 
 # Adi Teman lectures 
 [youtube](https://www.youtube.com/watch?v=tywTQA_ko64&list=PLZU5hLL_713wQgIjRekOueTMJAyaoze3F&index=2)
