@@ -1,18 +1,18 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import meep as mp
-from meep.materials import Si, Pt
+#from meep.materials import Si, Pt
 
 
 ###############################################################################
 #                                  Parameters                                 #
 ###############################################################################
-pitch=5 #pixel pitch in um
-depth = 10 # pixel depth in um
-d_absorber = 0.5 #absorber_depth in um
+pitch = 5  # pixel pitch in um
+depth = 10  # pixel depth in um
+d_absorber = 0.5  # absorber_depth in um
 d_extention = d_absorber + 2
 dpml = 1
-fsrc = 0.25 # pulse center frequency = 4um
+fsrc = 0.25  # pulse center frequency = 4um
 df = 0.06    # pulse width (in frequency)
 nfreq = 100  # number of frequencies at which to compute flux
 epsilon = 2
@@ -39,16 +39,17 @@ geometry = [
     mp.Block(
         mp.Vector3(x_size, d_absorber, mp.inf),
         center=mp.Vector3(0, depth/2+d_absorber/2, 0),
-        material=mp.Medium(epsilon=epsilon, D_conductivity=2*np.pi*fsrc*5/epsilon)
+        material=mp.Medium(
+            epsilon=epsilon, D_conductivity=2*np.pi*fsrc*5/epsilon)
         #material=mp.Medium(epsilon=-250, D_conductivity=2*np.pi*fsrc*100/250)
     )
 ]
 
 
-sources = [mp.Source(mp.GaussianSource(fsrc,fwidth=df),
+sources = [mp.Source(mp.GaussianSource(fsrc, fwidth=df),
                      component=mp.Ez,
-                     center=mp.Vector3(0,-(depth+d_extention)/2,0),
-                     size=mp.Vector3(x_size,0,0))]
+                     center=mp.Vector3(0, -(depth+d_extention)/2, 0),
+                     size=mp.Vector3(x_size, 0, 0))]
 
 
 sim = mp.Simulation(
@@ -60,14 +61,16 @@ sim = mp.Simulation(
 )
 
 
-## Flux 
+# Flux
 
 # reflected flux
-refl_fr = mp.FluxRegion(center=mp.Vector3(0, -(depth/2+d_extention)+0.5,0), size=mp.Vector3(x_size,0,0))
+refl_fr = mp.FluxRegion(center=mp.Vector3(
+    0, -(depth/2+d_extention)+0.5, 0), size=mp.Vector3(x_size, 0, 0))
 refl = sim.add_flux(fsrc, df, nfreq, refl_fr)
- 
+
 # transmitted flux
-tran_fr = mp.FluxRegion(center=mp.Vector3(0,depth/2+d_extention,0), size=mp.Vector3(x_size,0,0))
+tran_fr = mp.FluxRegion(center=mp.Vector3(
+    0, depth/2+d_extention, 0), size=mp.Vector3(x_size, 0, 0))
 tran = sim.add_flux(fsrc, df, nfreq, tran_fr)
 
 flux_freqs = mp.get_flux_freqs(refl)
@@ -77,12 +80,12 @@ flux_freqs = mp.get_flux_freqs(refl)
 ###############################################################################
 
 
-pt = mp.Vector3(0,depth/2+d_extention,0)
+pt = mp.Vector3(0, depth/2+d_extention, 0)
 
-sim.run(until_after_sources=mp.stop_when_fields_decayed(50,mp.Ez,pt,1e-3))
-#sim.run(until=200)
+sim.run(until_after_sources=mp.stop_when_fields_decayed(50, mp.Ez, pt, 1e-3))
+# sim.run(until=200)
 
-# get fluxes 
+# get fluxes
 refl_flux = mp.get_fluxes(refl)
 tran_flux = mp.get_fluxes(tran)
 flux_freqs = mp.get_flux_freqs(refl)
@@ -102,9 +105,9 @@ for i in range(nfreq):
 
 if mp.am_master():
     plt.figure()
-    plt.plot(wl,Rs,'bo-',label='reflectance')
-    plt.plot(wl,Ts,'ro-',label='transmittance')
-    plt.plot(wl,1-Rs-Ts,'go-',label='loss')
+    plt.plot(wl, Rs, 'bo-', label='reflectance')
+    plt.plot(wl, Ts, 'ro-', label='transmittance')
+    plt.plot(wl, 1-Rs-Ts, 'go-', label='loss')
     #plt.axis([3.0, 5.0, 0, 1])
     plt.xlabel("wavelength (μm)")
     plt.legend(loc="upper right")
@@ -116,4 +119,3 @@ plt.show()
 plt.figure()
 sim.plot2D(fields=mp.Ez)
 plt.show()
-
