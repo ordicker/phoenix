@@ -34,8 +34,8 @@ export YOSYS_CMD=$(command -v yosys)
 working example \w intro_to_vlsi/opendroad
 ```
 cd OpenROAD-flow-scripts/flow
-ESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make
-ESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make gui_final
+DESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make
+DESIGN_CONFIG=../../intro_to_vlsi/openroad/config.mk make gui_final
 ```
 
 # Adi Teman lectures 
