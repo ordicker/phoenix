@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import meep as mp
-#from meep.materials import Si, Pt
+# from meep.materials import Si, Pt
 
 
 ###############################################################################
@@ -13,7 +13,7 @@ d_absorber = 0.5  # absorber_depth in um
 d_extention = d_absorber + 2
 dpml = 1
 fsrc = 0.25  # pulse center frequency = 4um
-df = 0.06    # pulse width (in frequency)
+df = 0.10    # pulse width (in frequency)
 nfreq = 100  # number of frequencies at which to compute flux
 epsilon = 2
 
@@ -41,7 +41,7 @@ geometry = [
         center=mp.Vector3(0, depth/2+d_absorber/2, 0),
         material=mp.Medium(
             epsilon=epsilon, D_conductivity=2*np.pi*fsrc*5/epsilon)
-        #material=mp.Medium(epsilon=-250, D_conductivity=2*np.pi*fsrc*100/250)
+        # material=mp.Medium(epsilon=-250, D_conductivity=2*np.pi*fsrc*100/250)
     )
 ]
 
@@ -82,7 +82,7 @@ flux_freqs = mp.get_flux_freqs(refl)
 
 pt = mp.Vector3(0, depth/2+d_extention, 0)
 
-sim.run(until_after_sources=mp.stop_when_fields_decayed(50, mp.Ez, pt, 1e-3))
+sim.run(until_after_sources=mp.stop_when_fields_decayed(100, mp.Ez, pt, 1e-4))
 # sim.run(until=200)
 
 # get fluxes
@@ -108,7 +108,7 @@ if mp.am_master():
     plt.plot(wl, Rs, 'bo-', label='reflectance')
     plt.plot(wl, Ts, 'ro-', label='transmittance')
     plt.plot(wl, 1-Rs-Ts, 'go-', label='loss')
-    #plt.axis([3.0, 5.0, 0, 1])
+    # plt.axis([3.0, 5.0, 0, 1])
     plt.xlabel("wavelength (μm)")
     plt.legend(loc="upper right")
     plt.show()
