@@ -10,18 +10,18 @@ constants;
 %% Params
 n=500;
 % lambda = 7.437e-6;
-% lambda = linspace(2e-6,15e-6,n); %in [m]
+lambda = linspace(3e-6,5.5e-6,n); %in [m]
 % lam_sp = linspace(10e-9,1000e-9,n);
 % q=2*pi./lam_sp;
-% f = linspace(20,70,n)*1e12; %in [Hz]
-omega = 1*linspace(0.*Ef/hbar,1.5*Ef/hbar,n); %in [m]
-f=omega/2/pi;
-% f=c./lambda; % frequencies in Hz
+%f = linspace(20,70,n)*1e12; %in [Hz]
+%omega = 1*linspace(0.*Ef/hbar,1.5*Ef/hbar,n); %in [m]
+%f=omega/2/pi;
+f=c./lambda; % frequencies in Hz
 lambda = c./f; %in [m]
 omega=2*pi*f;
 k0=2*pi./lambda;
 theta = 0*linspace(1,89,n); % angle in degrees 
-
+S=0;
 %% Layers properties
 % Define epsilons of layers
 
@@ -29,8 +29,8 @@ theta = 0*linspace(1,89,n); % angle in degrees
 % eps2zz=1*eps_Si(f);
 eps3xx=1*ones(1,n);
 eps3zz=1*ones(1,n);
-eps2xx=1*ones(1,n);
-eps2zz=1*ones(1,n);
+eps2xx=(-10.645+17.191i)*ones(1,n);
+eps2zz=(-10.645+17.191i)*ones(1,n);
 eps1xx=1*ones(1,n);
 eps1zz=1*ones(1,n);
 % eps2xx=eps_BN_x;
@@ -43,14 +43,14 @@ eps1zz=1*ones(1,n);
 % eps4zz=-10000;
 % eps3xx=eps_Ge(f);
 % eps3zz=eps_Ge(f);
-eps4xx=ones(1,n);
-eps4zz=ones(1,n);
+% eps4xx=ones(1,n);
+% eps4zz=ones(1,n);
 % eps4xx=eps_BN_x;
 % eps4zz=eps_BN_z;
 % eps3xx=ones(1,n);% omega in 1/cm
 % eps3zz=ones(1,n);% omega in 1/cm
-eps5xx=ones(1,n);
-eps5zz=ones(1,n);
+% eps5xx=ones(1,n);
+% eps5zz=ones(1,n);
 % eps6xx=ones(1,n);
 % eps6zz=ones(1,n);
 
@@ -69,7 +69,7 @@ for i=1:N
 end
 
 % Define thicknesses, size N-2
-d = [  25.5  ]*1e-9; % in nm
+d = [  20.0  ]*1e-9; % in [m]
 
 % Define at which interface is there a graphene layer, size N-1
 Ng = [  ];
