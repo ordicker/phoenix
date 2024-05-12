@@ -1,0 +1,25 @@
+#+TITLE: Path to make 100Mpixel MWIR sensor 
+#+SUBTITLE: Large MWIR sensor on Silicon using Schottky Didoe
+#+AUTHOR: Or Dicker
+#+EMAIL: or.dicker@gmail.com
+#+OPTIONS: H:1 toc:nil num:t email:t
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: Madrid
+#+STARTUP: beamer
+#+LaTeX_CLASS_OPTIONS: [aspectratio=169]
+#+LATEX_HEADER: \usefonttheme{serif}
+#+OPTIONS: ^:{}
+
+
+* Intro
+* Problem Statement
+* Schotty Didoe (history)
+* Schotty Didoe (Inovation)
+* Readout
+* 4T Pixel
+* EM simulation
+* TRM simulation
+* ALD & DRIE
+* Measurements
+
