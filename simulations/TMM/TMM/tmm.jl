@@ -17,7 +17,7 @@ function make_t_r(n1, n2, θ1, θ2)
 end
 
 function make_t_r_list(indices, θ)
-    t_r_list = zeros(2,length(indices)-1)
+    t_r_list = zeros(eltype(indices),2,length(indices)-1)
     counter = 1
     for (n_i,n_f,θ_i,θ_f) in zip(indices[1:end-1],indices[2:end],θ[1:end-1],θ[2:end])
         t_r_list[:,counter].= make_t_r(n_i,n_f,θ_i,θ_f)

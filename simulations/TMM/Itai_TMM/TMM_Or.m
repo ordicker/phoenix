@@ -8,7 +8,7 @@ close all;
 constants;
 
 %% Params
-n=500;
+n=500; %% warning! 
 % lambda = 7.437e-6;
 lambda = linspace(3e-6,5.5e-6,n); %in [m]
 % lam_sp = linspace(10e-9,1000e-9,n);
@@ -29,8 +29,8 @@ S=0;
 % eps2zz=1*eps_Si(f);
 eps3xx=1*ones(1,n);
 eps3zz=1*ones(1,n);
-eps2xx=(-10.645+17.191i)*ones(1,n);
-eps2zz=(-10.645+17.191i)*ones(1,n);
+eps2xx=(4.90-11.70i)^2*ones(1,n);
+eps2zz=(4.90-11.70i)^2*ones(1,n);
 eps1xx=1*ones(1,n);
 eps1zz=1*ones(1,n);
 % eps2xx=eps_BN_x;
@@ -69,7 +69,7 @@ for i=1:N
 end
 
 % Define thicknesses, size N-2
-d = [  20.0  ]*1e-9; % in [m]
+d = [  0.5  ]*1e-6; % in [m]
 
 % Define at which interface is there a graphene layer, size N-1
 Ng = [  ];
