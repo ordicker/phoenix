@@ -9,7 +9,7 @@ import meep as mp
 ###############################################################################
 pitch = 5  # pixel pitch in um
 depth = 10  # pixel depth in um
-d_absorber = 0.5  # absorber_depth in um
+d_absorber = 0.05  # absorber_depth in um
 d_extention = d_absorber + 2
 dpml = 1
 fsrc = 0.25  # pulse center frequency = 4um
@@ -17,12 +17,12 @@ df = 0.10    # pulse width (in frequency)
 nfreq = 100  # number of frequencies at which to compute flux
 epsilon = 2
 
-RESOLUTION = 10
+RESOLUTION = 20
 
 
-###############################################################################
-#                                    Setup                                    #
-###############################################################################
+################################################
+#                     Setup                    #
+################################################
 x_size = pitch+2*dpml
 cell = mp.Vector3(x_size, depth+2*(d_extention+dpml), 0)
 
@@ -75,9 +75,9 @@ tran = sim.add_flux(fsrc, df, nfreq, tran_fr)
 
 flux_freqs = mp.get_flux_freqs(refl)
 
-###############################################################################
-#                                     Run                                     #
-###############################################################################
+#####################################################
+#                         Run                       #
+#####################################################
 
 
 pt = mp.Vector3(0, depth/2+d_extention, 0)
@@ -90,9 +90,9 @@ refl_flux = mp.get_fluxes(refl)
 tran_flux = mp.get_fluxes(tran)
 flux_freqs = mp.get_flux_freqs(refl)
 
-###############################################################################
-#                                     Plot                                    #
-###############################################################################
+##################################################
+#                      Plot                      #
+##################################################
 
 wl = []
 Rs = []
